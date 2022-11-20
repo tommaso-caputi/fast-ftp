@@ -1,4 +1,11 @@
 from pynput import keyboard
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+FTP_USERNAME = os.getenv('FTP_USERNAME')
+FTP_PASSWORD = os.getenv('FTP_PASSWORD')
+FTP_HOST = os.getenv('FTP_HOST')
 
 def save_on_ftp():
     print("ctrl+s pressed")
