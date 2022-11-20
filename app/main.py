@@ -1,31 +1,18 @@
 from pynput import keyboard
 
+def save_on_ftp():
+    print("ctrl+s pressed")
+
 def on_press(key):
-    print(key)
-    if key == "'\x13'":
-        print("ctl+s")
-    """ try:
-        print('alphanumeric key {0} pressed'.format(
-            key.char))
-    except AttributeError:
-        print('special key {0} pressed'.format(
-            key)) """
+    try:
+        if(key.char=="\x13"):
+            save_on_ftp()
+    except:
+        pass
 
-def on_release(key):
-    print('{0} released'.format(
-        key))
-    if key == keyboard.Key.esc:
-        # Stop listener
-        return False
 
-# Collect events until released
-with keyboard.Listener(
-        on_press=on_press,
-        on_release=on_release) as listener:
+with keyboard.Listener(on_press=on_press) as listener:
     listener.join()
 
-# ...or, in a non-blocking fashion:
-listener = keyboard.Listener(
-    on_press=on_press,
-    on_release=on_release)
+listener = keyboard.Listener(on_press=on_press)
 listener.start()
