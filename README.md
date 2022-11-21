@@ -17,6 +17,7 @@ FTP_HOST =
 FTP_DIRECTORY = 
 FILES = 
 ```
+2. Insert into run.bat the main.py path
 ### Requirements:
 ```python
 pip install python-dotenv pynput infi.systray
