@@ -52,6 +52,9 @@ x.start()
 
 icon_path = os.path.join(os.path.dirname(__file__), "test.ico")
 shutdown_called = False
+def on_quit(systray):
+    import sys
+    sys.exit(0)
 def set_pause(systray):
     global pause
     pause = not pause
@@ -60,5 +63,5 @@ def on_status(systray):
     ctypes.windll.user32.MessageBoxW(None, u"Status: "+status, u"About", 0)
 menu_options = (("Pause/Resume", None, set_pause),
                 ("Status", None, on_status))
-systray = SysTrayIcon(icon_path, "Fast FTP", menu_options)
+systray = SysTrayIcon(icon_path, "Fast FTP", menu_options, on_quit)
 systray.start()
