@@ -1,4 +1,4 @@
-<div style="float: left;"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" width="128" height="128"/></div> 
+<div style="float: left;"><img src="https://raw.githubusercontent.com/tommaso-caputi/fast-ftp/dev-app/app/ftp.ico" width="128" height="128"/></div> 
 # Quite a long title, potentially going over several lines
 
 <br />
