@@ -1,5 +1,5 @@
 <div style="float: left;"><img src="https://raw.githubusercontent.com/tommaso-caputi/fast-ftp/dev-app/app/ftp.ico" width="128" height="128"/></div> 
-# Quite a long title, potentially going over several lines
+# Fast FTP
 
 <br />
 python background app for auto save files on ftp server<br />
