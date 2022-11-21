@@ -50,7 +50,7 @@ x = threading.Thread(target=thread_function)
 x.start()
 
 
-icon_path = os.path.join(os.path.dirname(__file__), "test.ico")
+icon_path = os.path.join(os.path.dirname(__file__), "ftp.ico")
 shutdown_called = False
 def on_quit(systray):
     import sys
