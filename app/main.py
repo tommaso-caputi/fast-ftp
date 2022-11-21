@@ -1,7 +1,14 @@
+from __future__ import print_function
+from infi.systray import SysTrayIcon
+import os
+import ctypes
 from pynput import keyboard
 from dotenv import load_dotenv
 import os
 from ftplib import FTP
+import threading
+
+pause = False
 
 load_dotenv()
 FTP_USERNAME = os.getenv('FTP_USERNAME')
@@ -28,14 +35,30 @@ def save_on_ftp():
 
 def on_press(key):
     try:
-        if(key.char=="\x13"):
+        if(key.char=="\x13" and not pause):
             save_on_ftp()
     except:
         pass
 
+def thread_function():
+    with keyboard.Listener(on_press=on_press) as listener:
+        listener.join()
+    listener = keyboard.Listener(on_press=on_press)
+    listener.start()
 
-with keyboard.Listener(on_press=on_press) as listener:
-    listener.join()
+x = threading.Thread(target=thread_function)
+x.start()
 
-listener = keyboard.Listener(on_press=on_press)
-listener.start()
+
+icon_path = os.path.join(os.path.dirname(__file__), "test.ico")
+shutdown_called = False
+def set_pause(systray):
+    global pause
+    pause = not pause
+def on_status(systray):
+    status = "stopped" if pause else "active"
+    ctypes.windll.user32.MessageBoxW(None, u"Status: "+status, u"About", 0)
+menu_options = (("Pause/Resume", None, set_pause),
+                ("Status", None, on_status))
+systray = SysTrayIcon(icon_path, "Systray Test", menu_options)
+systray.start()
