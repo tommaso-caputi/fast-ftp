@@ -1,4 +1,4 @@
-<img style="float: left;align:left"><img src="https://raw.githubusercontent.com/tommaso-caputi/fast-ftp/dev-app/app/ftp.ico" width="128" height="128"/>
+<img src="https://raw.githubusercontent.com/tommaso-caputi/fast-ftp/dev-app/app/ftp.ico" width="128" height="128"/>
 # Fast FTP
 
 <br />
