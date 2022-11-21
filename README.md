@@ -1,4 +1,6 @@
-# fast ftp ![]((https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png)
+# fast ftp <p align="center">
+    ![]((https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png)
+</p>
 
 <br />
 python background app for auto save files on ftp server<br />
