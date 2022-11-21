@@ -1,5 +1,6 @@
-# fast ftp <img align="left" width="50" height="50" src="https://raw.githubusercontent.com/tommaso-caputi/fast-ftp/dev-app/app/ftp.ico">
+# fast ftp <img align="left" width="80" height="80" src="https://raw.githubusercontent.com/tommaso-caputi/fast-ftp/dev-app/app/ftp.ico">
 
+<br />
 python background app for auto save files on ftp server<br />
 vs code extention for auto save files on ftp server
 
