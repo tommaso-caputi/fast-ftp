@@ -8,6 +8,8 @@ FTP_USERNAME = os.getenv('FTP_USERNAME')
 FTP_PASSWORD = os.getenv('FTP_PASSWORD')
 FTP_HOST = os.getenv('FTP_HOST')
 
+print("start")
+
 ftp = FTP()
 ftp.connect(FTP_HOST, 21)
 ftp.login(FTP_USERNAME, FTP_PASSWORD)
