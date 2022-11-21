@@ -60,5 +60,5 @@ def on_status(systray):
     ctypes.windll.user32.MessageBoxW(None, u"Status: "+status, u"About", 0)
 menu_options = (("Pause/Resume", None, set_pause),
                 ("Status", None, on_status))
-systray = SysTrayIcon(icon_path, "Systray Test", menu_options)
+systray = SysTrayIcon(icon_path, "Fast FTP", menu_options)
 systray.start()
