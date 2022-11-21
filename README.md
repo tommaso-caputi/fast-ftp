@@ -1,4 +1,4 @@
-# fast ftp <img align="left" width="80" height="80" src="https://raw.githubusercontent.com/tommaso-caputi/fast-ftp/dev-app/app/ftp.ico">
+# fast ftp ![]((https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png)
 
 <br />
 python background app for auto save files on ftp server<br />
