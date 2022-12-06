@@ -7,10 +7,13 @@ from dotenv import load_dotenv
 import os
 from ftplib import FTP
 import threading
+from tkinter.filedialog import askopenfilenames
+from tkinter import Tk
+from easygui import *
 
 pause = False
 
-load_dotenv()
+""" load_dotenv()
 FTP_USERNAME = os.getenv('FTP_USERNAME')
 FTP_PASSWORD = os.getenv('FTP_PASSWORD')
 FTP_HOST = os.getenv('FTP_HOST')
@@ -47,11 +50,31 @@ def thread_function():
     listener.start()
 
 x = threading.Thread(target=thread_function)
-x.start()
+x.start() """
 
+def set_file_path():
+    Tk().withdraw()
+    filepaths = askopenfilenames() 
+    paths = "FILES = "
+    with open(".env", "w") as f:
+        for path in filepaths:
+            paths += path+"-"
+        f.write(paths)
 
-icon_path = os.path.join(os.path.dirname(__file__), "ftp.ico")
-shutdown_called = False
+def get_env_data():
+    res = []
+    return 1
+
+def settings(systray):
+    env_data = ["a","b","c","d"]
+    title = "FAST FTP Setting"
+    input_list = ["FTP_USERNAME", "FTP_PASSWORD", "FTP_HOST", "FTP_DIRECTORY"]
+    data = [env_data[0],env_data[1],env_data[2],env_data[3]]
+    output = multenterbox("",title, input_list, data).
+    title = "Message Box"
+    message = "Entered details are in form of list : " + str(output)
+    msg = msgbox(message, title)
+
 def on_quit(systray):
     import sys
     sys.exit(0)
@@ -62,6 +85,7 @@ def on_status(systray):
     status = "stopped" if pause else "active"
     ctypes.windll.user32.MessageBoxW(None, u"Status: "+status, u"About", 0)
 menu_options = (("Pause/Resume", None, set_pause),
+                ("Settings", None, settings),
                 ("Status", None, on_status))
-systray = SysTrayIcon(icon_path, "Fast FTP", menu_options, on_quit)
+systray = SysTrayIcon(os.path.join(os.path.dirname(__file__), "ftp.ico"), "Fast FTP", menu_options, on_quit)
 systray.start()
