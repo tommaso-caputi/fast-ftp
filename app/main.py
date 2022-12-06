@@ -8,8 +8,8 @@ import os
 from ftplib import FTP
 import threading
 from tkinter.filedialog import askopenfilenames
-from tkinter import Tk
-from easygui import *
+import tkinter
+import customtkinter  
 
 pause = False
 
@@ -66,14 +66,28 @@ def get_env_data():
     return 1
 
 def settings(systray):
-    env_data = ["a","b","c","d"]
-    title = "FAST FTP Setting"
-    input_list = ["FTP_USERNAME", "FTP_PASSWORD", "FTP_HOST", "FTP_DIRECTORY"]
-    data = [env_data[0],env_data[1],env_data[2],env_data[3]]
-    output = multenterbox("",title, input_list, data).
-    title = "Message Box"
-    message = "Entered details are in form of list : " + str(output)
-    msg = msgbox(message, title)
+    root_tk = tkinter.Tk()
+    root_tk.geometry("500x270")
+    root_tk.title("CustomTkinter Test")
+    root_tk.eval('tk::PlaceWindow . center')
+    root_tk.resizable(False, False)
+    def get_file_paths():
+        file_paths = askopenfilenames()
+        print(file_paths)
+    def update():
+        root_tk.destroy()
+    customtkinter.CTkButton(master=root_tk, text="Select files",corner_radius=10, command=get_file_paths).place(relx=0.7, rely=0.9, anchor=tkinter.CENTER)
+    customtkinter.CTkButton(master=root_tk, text="Update",corner_radius=10, command=update).place(relx=0.3, rely=0.9, anchor=tkinter.CENTER)
+    customtkinter.CTkLabel(master=root_tk, text="FTP_USERNAME", text_color="blue").place(relx=0.025, rely=0.1)
+    customtkinter.CTkEntry(master=root_tk, width = 350, height=20).place(relx=0.25, rely=0.1)
+    customtkinter.CTkLabel(master=root_tk, text="FTP_PASSWORD", text_color="blue").place(relx=0.025, rely=0.2)
+    customtkinter.CTkEntry(master=root_tk, width = 350, height=20).place(relx=0.25, rely=0.2)
+    customtkinter.CTkLabel(master=root_tk, text="FTP_HOST", text_color="blue").place(relx=0.025, rely=0.3)
+    customtkinter.CTkEntry(master=root_tk, width = 350, height=20).place(relx=0.25, rely=0.3)
+    customtkinter.CTkLabel(master=root_tk, text="FTP_DIRECTORY", text_color="blue").place(relx=0.025, rely=0.4)
+    customtkinter.CTkEntry(master=root_tk, width = 350, height=20).place(relx=0.25, rely=0.4)
+    root_tk.mainloop()
+
 
 def on_quit(systray):
     import sys
