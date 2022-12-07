@@ -9,7 +9,7 @@ from ftplib import FTP
 import threading
 
 pause = False
-
+'''
 load_dotenv()
 FTP_USERNAME = os.getenv('FTP_USERNAME')
 FTP_PASSWORD = os.getenv('FTP_PASSWORD')
@@ -47,11 +47,16 @@ def thread_function():
     listener.start()
 
 x = threading.Thread(target=thread_function)
-x.start()
-
+x.start()'''
 
 icon_path = os.path.join(os.path.dirname(__file__), "ftp.ico")
 shutdown_called = False
+
+def settings(systray):
+    """ with open(".env", "w") as f:
+        f.write("PROVA = asd") """
+    pass
+
 def on_quit(systray):
     import sys
     sys.exit(0)
@@ -62,6 +67,7 @@ def on_status(systray):
     status = "stopped" if pause else "active"
     ctypes.windll.user32.MessageBoxW(None, u"Status: "+status, u"About", 0)
 menu_options = (("Pause/Resume", None, set_pause),
+                ("Settings", None, settings),
                 ("Status", None, on_status))
 systray = SysTrayIcon(icon_path, "Fast FTP", menu_options, on_quit)
 systray.start()
