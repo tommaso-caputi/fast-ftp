@@ -7,18 +7,13 @@ from dotenv import load_dotenv
 import os
 from ftplib import FTP
 import threading
-from tkinter.filedialog import askopenfilenames
 import tkinter
 import customtkinter  
+import settings
 
 pause = False
-<<<<<<< HEAD
-'''
-load_dotenv()
-=======
 
 """ load_dotenv()
->>>>>>> fc8567744bb1581f1a93ce7ffaf41ba6dfba0cb7
 FTP_USERNAME = os.getenv('FTP_USERNAME')
 FTP_PASSWORD = os.getenv('FTP_PASSWORD')
 FTP_HOST = os.getenv('FTP_HOST')
@@ -55,38 +50,8 @@ def thread_function():
     listener.start()
 
 x = threading.Thread(target=thread_function)
-x.start()'''
+x.start() """
 
-
-
-def set_file_paths():
-    filepaths = askopenfilenames() 
-    paths = "FILES = "
-    with open(".env", "w") as f:
-        for path in filepaths:
-            paths += path+"-"
-        paths = paths[:-1]
-        f.write(paths)
-
-def settings(systray):
-    root_tk = tkinter.Tk()
-    root_tk.geometry("500x270")
-    root_tk.title("CustomTkinter Test")
-    root_tk.eval('tk::PlaceWindow . center')
-    root_tk.resizable(False, False)
-    def update():
-        root_tk.destroy()
-    customtkinter.CTkButton(master=root_tk, text="Select files",corner_radius=10, command=set_file_paths).place(relx=0.7, rely=0.9, anchor=tkinter.CENTER)
-    customtkinter.CTkButton(master=root_tk, text="Update",corner_radius=10, command=update).place(relx=0.3, rely=0.9, anchor=tkinter.CENTER)
-    customtkinter.CTkLabel(master=root_tk, text="FTP_USERNAME", text_color="blue").place(relx=0.025, rely=0.1)
-    customtkinter.CTkEntry(master=root_tk, textvariable = "prova",width = 350, height=20).place(relx=0.25, rely=0.1)
-    customtkinter.CTkLabel(master=root_tk, text="FTP_PASSWORD", text_color="blue").place(relx=0.025, rely=0.2)
-    customtkinter.CTkEntry(master=root_tk, width = 350, height=20).place(relx=0.25, rely=0.2)
-    customtkinter.CTkLabel(master=root_tk, text="FTP_HOST", text_color="blue").place(relx=0.025, rely=0.3)
-    customtkinter.CTkEntry(master=root_tk, width = 350, height=20).place(relx=0.25, rely=0.3)
-    customtkinter.CTkLabel(master=root_tk, text="FTP_DIRECTORY", text_color="blue").place(relx=0.025, rely=0.4)
-    customtkinter.CTkEntry(master=root_tk, width = 350, height=20).place(relx=0.25, rely=0.4)
-    root_tk.mainloop()
 
 def on_quit(systray):
     import sys
@@ -98,7 +63,7 @@ def on_status(systray):
     status = "stopped" if pause else "active"
     ctypes.windll.user32.MessageBoxW(None, u"Status: "+status, u"About", 0)
 menu_options = (("Pause/Resume", None, set_pause),
-                ("Settings", None, settings),
+                ("Settings", None, settings.run),
                 ("Status", None, on_status))
 systray = SysTrayIcon(os.path.join(os.path.dirname(__file__), "ftp.ico"), "Fast FTP", menu_options, on_quit)
 systray.start()
