@@ -2,15 +2,6 @@ from tkinter.filedialog import askopenfilenames
 import tkinter
 import customtkinter
 
-def set_file_paths(): #need to be fixed
-    filepaths = askopenfilenames() 
-    paths = "FILES = "
-    with open(".env", "w") as f:
-        for path in filepaths:
-            paths += path+"-"
-        paths = paths[:-1]
-        f.write(paths)
-    return paths
 
 def get_values():
     values = {}
@@ -28,6 +19,16 @@ def settings():
     root_tk.title("CustomTkinter Test")
     root_tk.eval('tk::PlaceWindow . center')
     root_tk.resizable(False, False)
+    def set_file_paths(): #need to be fixed
+        filepaths = askopenfilenames() 
+        paths = ""
+        with open('.env','w') as f:
+            for i in range(len(values)-1):
+                f.write(str(keys[i])+" = "+str(values[keys[i]])+"\n")
+            for path in filepaths:
+                paths+=path+"-"
+            f.write("FILES = "+paths)
+        root_tk.destroy()
     def update():
         with open(".env","w") as f:
             for i in range(len(keys)):
@@ -44,9 +45,3 @@ def settings():
     customtkinter.CTkButton(master=root_tk, text="Update files",corner_radius=10, command=set_file_paths).place(relx=0.7, rely=0.9, anchor=tkinter.CENTER)
     customtkinter.CTkButton(master=root_tk, text="Update data",corner_radius=10, command=update).place(relx=0.3, rely=0.9, anchor=tkinter.CENTER)
     root_tk.mainloop()
-
-#def run(systray):
-def run():
-    settings()
-
-run()
